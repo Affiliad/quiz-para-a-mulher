@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz</title>
+    <title>Quiz - Segunda Parte</title>
     <style>
         body {
             font-family: 'GeistSans', sans-serif;
@@ -29,19 +29,13 @@
             background-color: #C51563;
             border-radius: 10px;
             height: 100%;
-            width: 0%; /* Inicia com 0% */
-            transition: width 0.5s ease-in-out; /* Animação suave */
+            width: 60%; /* Ajuste conforme o progresso */
         }
-        .question {
-            font-size: 27.2px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .question-secondary {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 15px;
+        .image-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: #ddd;
+            margin: 20px 0;
         }
         .btn {
             background-color: #C51563;
@@ -67,41 +61,17 @@
             <div class="progress-bar-inner" id="progressBar"></div>
         </div>
 
-        <!-- Pergunta 1 -->
-        <div class="question" id="question">Você está pronta para descobrir o segredo das unhas perfeitas?</div>
-        <div class="question-secondary">Descubra agora o segredo por trás das unhas de fibra que estão transformando vidas e carreiras...</div>
-
-        <!-- Imagem -->
-        <img src="imagem/IMAGEM-1.jpg" alt="Imagem 1" style="width: 100%; height: auto; margin: 0;">
-
-        <!-- Segunda parte do texto -->
-        <div class="question-secondary">Agora, vamos entender um pouco mais sobre seu negócio e como ele pode crescer com as unhas perfeitas.</div>
+        <!-- Imagem da segunda parte -->
+        <img src="imagem/IMAGEM-2.jpg" alt="Imagem 2" style="width: 100%; height: auto; margin: 5px 0;">
 
         <!-- Botão Continuar -->
         <button class="btn" onclick="nextPage()">Continuar</button>
     </div>
 
     <script>
-        var currentQuestion = 1; // Começa pela primeira pergunta
-        var totalQuestions = 22; // Total de perguntas do quiz
-
-        // Função para avançar para a próxima página e atualizar o progresso
+        // Função para avançar para a próxima parte
         function nextPage() {
-            if (currentQuestion < totalQuestions) {
-                currentQuestion++;
-                updateProgressBar();
-                document.getElementById('question').innerHTML = 'Pergunta ' + currentQuestion + ': Qual é a sua principal dúvida sobre unhas?'; // Atualize conforme necessário
-                // Aqui você pode adicionar lógica para carregar a próxima pergunta
-            } else {
-                // Se for a última pergunta, redireciona para a página de resultados
-                window.location.href = 'resultados.html';
-            }
-        }
-
-        // Função para atualizar a barra de progresso
-        function updateProgressBar() {
-            var progress = (currentQuestion / totalQuestions) * 100;
-            document.getElementById('progressBar').style.width = progress + '%';
+            window.location.href = 'terceira-parte.html';  // Atualize com o caminho correto
         }
     </script>
 </body>
