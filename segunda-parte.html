@@ -29,7 +29,8 @@
             background-color: #C51563;
             border-radius: 10px;
             height: 100%;
-            width: 60%; /* Ajuste conforme o progresso */
+            width: 0%; /* Inicializa com 0% */
+            transition: width 0.5s ease-in-out; /* Animação suave */
         }
         .image-placeholder {
             width: 100%;
@@ -62,16 +63,30 @@
         </div>
 
         <!-- Imagem da segunda parte -->
-        <img src="imagem/IMAGEM-2.jpg" alt="Imagem 2" style="width: 100%; height: auto; margin: 5px 0;">
+        <img src="imagem/IMAGEM-2.jpg" alt="Imagem 2" style="width: 100%; height: auto; margin: 5px 0;"> <!-- Atualize o nome da imagem -->
 
         <!-- Botão Continuar -->
         <button class="btn" onclick="nextPage()">Continuar</button>
     </div>
 
     <script>
-        // Função para avançar para a próxima parte
+        var currentQuestion = 2;  // Começa pela segunda pergunta
+        var totalQuestions = 22;  // Total de perguntas do quiz
+
+        // Função para avançar para a próxima parte e atualizar o progresso
         function nextPage() {
-            window.location.href = 'terceira-parte.html';  // Atualize com o caminho correto
+            currentQuestion++;  // Avança para a próxima pergunta
+            if (currentQuestion <= totalQuestions) {
+                updateProgressBar();  // Atualiza a barra de progresso
+            } else {
+                window.location.href = 'resultados.html';  // Redireciona para a página de resultados
+            }
+        }
+
+        // Função para atualizar a barra de progresso
+        function updateProgressBar() {
+            var progress = (currentQuestion / totalQuestions) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
         }
     </script>
 </body>
