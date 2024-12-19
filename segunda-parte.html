@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz - Segunda Parte</title>
+    <title>Quiz - Parte 1</title>
     <style>
         body {
             font-family: 'GeistSans', sans-serif;
@@ -32,11 +32,16 @@
             width: 0%; /* Inicializa com 0% */
             transition: width 0.5s ease-in-out; /* Animação suave */
         }
-        .image-placeholder {
-            width: 100%;
-            height: 200px;
-            background-color: #ddd;
-            margin: 20px 0;
+        .question {
+            font-size: 27.2px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .question-secondary {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 15px;
         }
         .btn {
             background-color: #C51563;
@@ -62,24 +67,39 @@
             <div class="progress-bar-inner" id="progressBar"></div>
         </div>
 
-        <!-- Imagem da segunda parte -->
-        <img src="imagem/IMAGEM-2.jpg" alt="Imagem 2" style="width: 100%; height: auto; margin: 5px 0;"> <!-- Atualize o nome da imagem -->
+        <!-- Pergunta e respostas -->
+        <div class="question" id="question">Você está pronta para descobrir o segredo das unhas perfeitas?</div>
+        <div class="question-secondary" id="questionSecondary">Descubra agora o segredo por trás das unhas de fibra que estão transformando vidas e carreiras...</div>
+
+        <!-- Imagem -->
+        <img src="imagem/IMAGEM-1.jpg" alt="Imagem 1" style="width: 100%; height: auto; margin: 5px 0;"> <!-- Imagem pode ser alterada conforme as perguntas -->
 
         <!-- Botão Continuar -->
-        <button class="btn" onclick="nextPage()">Continuar</button>
+        <button class="btn" onclick="nextQuestion()">Continuar</button>
     </div>
 
     <script>
-        var currentQuestion = 2;  // Começa pela segunda pergunta
-        var totalQuestions = 22;  // Total de perguntas do quiz
+        var currentQuestion = 1; // Inicia com a primeira pergunta
+        var totalQuestions = 22; // Total de perguntas
+        var questions = [
+            { question: "Você está pronta para descobrir o segredo das unhas perfeitas?", 
+              secondaryText: "Descubra agora o segredo por trás das unhas de fibra que estão transformando vidas e carreiras...", 
+              image: "imagem/IMAGEM-1.jpg" },
+            { question: "Pergunta 2: Qual é o seu maior desafio com unhas?", 
+              secondaryText: "Entenda os desafios mais comuns para ter unhas perfeitas.", 
+              image: "imagem/IMAGEM-2.jpg" },
+            // Adicione mais perguntas aqui conforme necessário
+        ];
 
-        // Função para avançar para a próxima parte e atualizar o progresso
-        function nextPage() {
-            currentQuestion++;  // Avança para a próxima pergunta
-            if (currentQuestion <= totalQuestions) {
-                updateProgressBar();  // Atualiza a barra de progresso
+        // Função para avançar para a próxima pergunta
+        function nextQuestion() {
+            if (currentQuestion < totalQuestions) {
+                currentQuestion++;
+                updateProgressBar();
+                updateQuestion();
             } else {
-                window.location.href = 'resultados.html';  // Redireciona para a página de resultados
+                // Aqui você pode redirecionar para a página de resultados ou finalizar o quiz
+                alert('Quiz terminado!'); 
             }
         }
 
@@ -87,6 +107,15 @@
         function updateProgressBar() {
             var progress = (currentQuestion / totalQuestions) * 100;
             document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        // Função para atualizar a pergunta e os detalhes
+        function updateQuestion() {
+            if (currentQuestion <= questions.length) {
+                document.getElementById('question').innerText = questions[currentQuestion - 1].question;
+                document.getElementById('questionSecondary').innerText = questions[currentQuestion - 1].secondaryText;
+                document.querySelector('img').src = questions[currentQuestion - 1].image;
+            }
         }
     </script>
 </body>
